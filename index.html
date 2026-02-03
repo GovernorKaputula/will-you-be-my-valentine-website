@@ -53,6 +53,7 @@
       max-width: 380px;
       z-index: 10;
       border: 1px solid white;
+      position: relative; /* important for button positioning */
     }
 
     h1 {
@@ -81,6 +82,7 @@
     }
 
     .button-group {
+      position: relative; /* allows No button to move inside */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -109,9 +111,9 @@
     #noBtn {
       background: #adb5bd;
       color: white;
-      z-index: 999; /* High z-index to stay on top */
-      transition: all 0.2s ease-out; /* Smooth "bouncing" movement */
-      position: relative;
+      z-index: 999;
+      transition: all 0.2s ease-out;
+      position: relative; /* starts inline */
     }
 
     .hidden { display: none; }
@@ -132,8 +134,8 @@
 <body>
    <div id="questionArea">
       <h1>Hai HotChick, Will you be my Valentine? ❤️</h1>
-	    <h1>I dare you to say no! ❤️</h1>
-    </div>
+      <h1>I dare you to say no! ❤️</h1>
+   </div>
 
   <div class="card" id="mainCard">
     <div class="img-container">
@@ -141,7 +143,7 @@
     </div>
     
     <div id="questionArea">
-          <div class="button-group">
+      <div class="button-group">
         <button id="yesBtn" class="btn">Yes!</button>
         <button id="noBtn" class="btn">No</button>
       </div>
@@ -149,7 +151,7 @@
 
     <div id="successArea" class="hidden">
       <h1 class="success-msg">YAY! ❤️</h1>
-      <p style="color: #555; font-weight: 500;">I knew you wouldnt resist, See you soon!</p>
+      <p style="color: #555; font-weight: 500;">I knew you wouldn't resist, See you soon!</p>
     </div>
   </div>
 
@@ -175,39 +177,38 @@
     }
     setInterval(createHeart, 400);
 
-    // 2. Optimized "Stay-in-Frame" Runaway Logic
+    // 2. Runaway Logic constrained inside card
     function moveNoButton() {
-      // Get dimensions of the button and the viewport
+      const card = document.getElementById("mainCard");
+      const cardRect = card.getBoundingClientRect();
       const btnWidth = noBtn.offsetWidth;
       const btnHeight = noBtn.offsetHeight;
-      
-      // Calculate max available space (with 20px safety margin)
-      const maxX = window.innerWidth - btnWidth - 20;
-      const maxY = window.innerHeight - btnHeight - 20;
 
-      // Generate random coordinates within the safety zone
+      // Calculate max available space inside card
+      const maxX = cardRect.width - btnWidth - 20;
+      const maxY = cardRect.height - btnHeight - 20;
+
+      // Generate random coordinates within card
       const randomX = Math.floor(Math.random() * maxX) + 10;
       const randomY = Math.floor(Math.random() * maxY) + 10;
 
-      // Apply the new position
-      noBtn.style.position = "fixed";
+      // Apply position relative to card
+      noBtn.style.position = "absolute";
       noBtn.style.left = `${randomX}px`;
       noBtn.style.top = `${randomY}px`;
 
-      // 3. Grow the Yes Button
+      // Grow the Yes button
       yesScale += 0.15;
       yesBtn.style.transform = `scale(${yesScale})`;
     }
 
     noBtn.addEventListener("mouseover", moveNoButton);
-    
-    // Support for mobile "taps"
     noBtn.addEventListener("touchstart", (e) => {
       e.preventDefault();
       moveNoButton();
     });
 
-    // 4. Success State
+    // 3. Success State
     yesBtn.addEventListener("click", () => {
       questionArea.classList.add("hidden");
       successArea.classList.remove("hidden");
