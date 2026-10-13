@@ -2,6 +2,8 @@
 
 A personal Valentine page built around the original photographs and “Hai, HotChick” greeting. A warm paper background, taped photo and burgundy typography make the page feel like a handwritten keepsake.
 
+[Open the Valentine website](https://governorkaputula.github.io/will-you-be-my-valentine-website/)
+
 ## Preview
 
 ```sh
@@ -24,7 +26,7 @@ Responses stay in the current browser page. They are not stored or sent to anyon
 
 `index.html` contains the greeting and initial note; `script.js` contains answer messages. `style.css` handles layout and animation. The original `valentine.jpg` and `valentine2.jpg` files are retained.
 
-The repository and its personal photographs are private. No public hosting has been enabled. The `noindex` directive is a crawler hint, not access control; any future hosting must preserve the intended audience.
+The repository and website are public. GitHub Pages serves the repository root from `main`. The page retains a `noindex` directive to discourage search indexing; anyone with the link can open it without signing in.
 
 ## Checks
 
