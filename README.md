@@ -1,135 +1,38 @@
-# 💖 Be My Valentine Interactive Web Page
+# A little love note
 
----
+A personal Valentine page built around the original photographs and “Hai, HotChick” greeting. A warm paper background, taped photo and burgundy typography make the page feel like a handwritten keepsake.
 
-## Project Overview
+## Preview
 
-This project is a fun and interactive Valentine-themed web page built using HTML, CSS, and JavaScript.
+```sh
+python -m http.server 4176 --bind 127.0.0.1
+```
 
-It asks the user a playful “Will you be my Valentine?” question with two buttons: Yes and No. The unique twist is that the “No” button actively avoids being clicked, making the interaction humorous and engaging.
+Open `http://127.0.0.1:4176`. No install or build step is required.
 
-The project demonstrates creative UI/UX design using simple frontend technologies.
+## Interactions
 
----
+- **Yes, of course** opens a celebration, changes the photograph and moves keyboard focus to the answer.
+- **Not this time** opens a considerate alternative answer. Both buttons work with touch and keyboard.
+- **Read the note again** resets the message, image and controls without reloading.
+- Heart effects are finite, cleared before replay and stopped when the page is hidden. Reduced-motion preferences disable them.
+- Mobile layouts scroll naturally and allow zoom. There are no duplicate element IDs or buttons that escape the screen.
 
-## Tools & Technologies
+Responses stay in the current browser page. They are not stored or sent to anyone. There is no analytics, RSVP backend or external messaging. Google Fonts provides typography; system fonts act as fallbacks.
 
-- HTML5  
-- CSS3  
-- JavaScript (Vanilla JS)  
-- Google Fonts  
-- CSS Animations  
-- DOM Manipulation  
+## Edit
 
----
+`index.html` contains the greeting and initial note; `script.js` contains answer messages. `style.css` handles layout and animation. The original `valentine.jpg` and `valentine2.jpg` files are retained.
 
-## Features
+The repository and its personal photographs are private. No public hosting has been enabled. The `noindex` directive is a crawler hint, not access control; any future hosting must preserve the intended audience.
 
-- Interactive Valentine question interface  
-- Moving “No” button that avoids clicks  
-- Expanding “Yes” button effect  
-- Floating animated heart background  
-- Success animation on acceptance  
-- Image change on success state  
-- Fully responsive design (mobile & desktop)  
+## Checks
 
----
+```sh
+node --check script.js
+python tests/check_site.py
+```
 
-## Project Structure
+GitHub Actions checks JavaScript syntax and guards against missing local assets, duplicate IDs and broken fragment links. Browser checks cover both answers, replay, keyboard focus and narrow-screen layout.
 
-This is a single-page application consisting of:
-
-- Central interactive card layout  
-- Image container for romantic visuals  
-- Two action buttons (Yes / No)  
-- Animated floating heart background  
-- Success message screen  
-
----
-
-## Implementation Details
-
-### Floating Heart Animation
-
-JavaScript dynamically creates heart elements that float upward continuously with randomized size and speed.
-
----
-
-### Button Interaction Logic
-
-The “No” button:
-- Detects hover and touch events  
-- Moves randomly within the card  
-- Avoids user clicks  
-
-The “Yes” button grows gradually when the user tries to click “No”.
-
----
-
-### Success State
-
-When “Yes” is clicked:
-- Question section disappears  
-- Success message appears  
-- Image changes  
-- Celebration animation triggers  
-- Buttons are hidden  
-
----
-
-## Key Insights (Development Learning)
-
-- DOM manipulation enables real-time interactivity  
-- CSS animations improve emotional UX  
-- Event listeners enable dynamic behavior  
-- Position calculations create movement logic  
-- Simple JavaScript can create engaging UI experiences  
-
----
-
-## Key Skills Demonstrated
-
-- HTML, CSS, JavaScript  
-- DOM manipulation  
-- Event handling  
-- CSS animations  
-- Responsive design  
-- Creative UI/UX logic  
-
----
-
-## Project Outcome
-
-This project demonstrates how simple web technologies can create engaging emotional user experiences.
-
-It successfully combines:
-- Animation  
-- Interactivity  
-- Humor-based UX  
-- Visual storytelling  
-
----
-
-## Files in This Repository
-
-- index.html  
-- Embedded CSS  
-- Embedded JavaScript  
-- valentine.jpg  
-- valentine2.jpg  
-
----
-
-## Live Demo
-
-👉 https://governorkaputula.github.io/hotchickvalentine/
-
----
-
-## Author
-
-Kenneth Gondwe Kaputula  
-Electrical and Electronics Engineer  
-YellowPhase Electrical & Mechanical Engineers  
-
----
+By Kenneth Gondwe Kaputula. Personal photographs remain with their respective owners.

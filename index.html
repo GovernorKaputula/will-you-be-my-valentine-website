@@ -1,228 +1,98 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Be My Valentine? ❤️</title>
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #ff4d6d;
-      --bg: #fff0f3;
-    }
-
-    * { box-sizing: border-box; }
-
-    body, html {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden; /* Strictly no scrolling */
-      background: var(--bg);
-      font-family: 'Quicksand', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* Floating Hearts Background */
-    .heart-particle {
-      position: absolute;
-      color: var(--primary);
-      opacity: 0.6;
-      pointer-events: none;
-      z-index: 1;
-      animation: float 5s linear infinite;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(110vh) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-    }
-
-    /* The Center Card */
-    .card {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(10px);
-      padding: 2rem;
-      border-radius: 25px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-      text-align: center;
-      width: 90%;
-      max-width: 380px;
-      z-index: 10;
-      border: 1px solid white;
-      position: relative; /* important for button positioning */
-    }
-
-    h1 {
-      font-family: 'Dancing Script', cursive;
-      font-size: 2rem;
-      color: #c9184a;
-      margin: 0.5rem 0;
-    }
-
-    /* Portrait Image Container */
-    .img-container {
-      width: 100%;
-      height: 350px; 
-      border-radius: 15px;
-      overflow: hidden;
-      margin-bottom: 1rem;
-      border: 4px solid #fff;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .button-group {
-      position: relative; /* allows No button to move inside */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 15px;
-      margin-top: 15px;
-      min-height: 60px;
-    }
-
-    .btn {
-      padding: 12px 25px;
-      font-size: 1rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    #yesBtn {
-      background: var(--primary);
-      color: white;
-      z-index: 100;
-      position: relative;
-    }
-
-    #noBtn {
-      background: #adb5bd;
-      color: white;
-      z-index: 999;
-      transition: all 0.2s ease-out;
-      position: relative; /* starts inline */
-    }
-
-    .hidden { display: none; }
-    
-    .success-msg {
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.5rem;
-      color: var(--primary);
-      animation: pop 0.5s ease-out;
-    }
-
-    @keyframes pop {
-      0% { transform: scale(0.5); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-  </style>
-</head>
-<body>
-   <div id="questionArea">
-      <h1>Hai HotChick, Will you be my Valentine? ❤️</h1>
-      <h1>I dare you to say no! ❤️</h1>
-   </div>
-
-  <div class="card" id="mainCard">
-    <div class="img-container">
-      <img id="mainImage" src="valentine.jpg" alt="Be My Valentine">
-    </div>
-    
-    <div id="questionArea">
-      <div class="button-group">
-        <button id="yesBtn" class="btn">Yes!</button>
-        <button id="noBtn" class="btn">No</button>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#faefe8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="description" content="A little love note, just for you." />
+    <title>A little love note · Be my Valentine?</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="confetti" id="confetti" aria-hidden="true"></div>
+    <header class="page-header">
+      <a href="#love-note" aria-label="Go to love note"
+        ><span aria-hidden="true">♡</span> A LITTLE LOVE NOTE</a
+      ><span>ONE QUESTION. ALL MY HEART.</span>
+    </header>
+    <main id="love-note" class="love-note">
+      <div class="photo-side">
+        <span class="handwritten top-note" aria-hidden="true"
+          >my favourite person ↘</span
+        >
+        <figure class="polaroid">
+          <div class="tape" aria-hidden="true"></div>
+          <img
+            id="main-image"
+            src="valentine.jpg"
+            width="1368"
+            height="1824"
+            alt="A favourite photograph of you on the beach"
+            fetchpriority="high"
+          />
+          <figcaption id="photo-caption">
+            You, me & a little bit of magic.
+          </figcaption>
+        </figure>
+        <span class="photo-heart" aria-hidden="true">♡</span>
+        <p class="photo-footnote">A MOMENT WORTH KEEPING</p>
       </div>
-    </div>
-
-    <div id="successArea" class="hidden">
-      <h1 class="success-msg">YAY! ❤️</h1>
-      <p style="color: #555; font-weight: 500;">I knew you wouldn't resist, See you soon!</p>
-    </div>
-  </div>
-
-  <script>
-    const noBtn = document.getElementById("noBtn");
-    const yesBtn = document.getElementById("yesBtn");
-    const questionArea = document.getElementById("questionArea");
-    const successArea = document.getElementById("successArea");
-    const mainImg = document.getElementById("mainImage");
-
-    let yesScale = 1;
-
-    // 1. Floating Hearts
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.classList.add("heart-particle");
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = (Math.random() * 20 + 10) + "px";
-      heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 5000);
-    }
-    setInterval(createHeart, 400);
-
-    // 2. Runaway Logic constrained inside card
-    function moveNoButton() {
-      const card = document.getElementById("mainCard");
-      const cardRect = card.getBoundingClientRect();
-      const btnWidth = noBtn.offsetWidth;
-      const btnHeight = noBtn.offsetHeight;
-
-      // Calculate max available space inside card
-      const maxX = cardRect.width - btnWidth - 20;
-      const maxY = cardRect.height - btnHeight - 20;
-
-      // Generate random coordinates within card
-      const randomX = Math.floor(Math.random() * maxX) + 10;
-      const randomY = Math.floor(Math.random() * maxY) + 10;
-
-      // Apply position relative to card
-      noBtn.style.position = "absolute";
-      noBtn.style.left = `${randomX}px`;
-      noBtn.style.top = `${randomY}px`;
-
-      // Grow the Yes button
-      yesScale += 0.15;
-      yesBtn.style.transform = `scale(${yesScale})`;
-    }
-
-    noBtn.addEventListener("mouseover", moveNoButton);
-    noBtn.addEventListener("touchstart", (e) => {
-      e.preventDefault();
-      moveNoButton();
-    });
-
-    // 3. Success State
-    yesBtn.addEventListener("click", () => {
-      questionArea.classList.add("hidden");
-      successArea.classList.remove("hidden");
-      mainImg.src = "valentine2.jpg"; // Your local portrait image
-      
-      // Cleanup
-      noBtn.style.display = "none";
-      yesBtn.style.display = "none";
-
-      // Final celebration burst
-      for(let i=0; i<15; i++) {
-        setTimeout(createHeart, i * 100);
-      }
-    });
-  </script>
-</body>
+      <div class="letter-side">
+        <div class="letter-top">
+          <span class="eyebrow">Special delivery</span
+          ><span class="postage" aria-hidden="true"
+            ><span>♡</span>WITH LOVE</span
+          >
+        </div>
+        <div id="question-area">
+          <p class="greeting">Hai, HotChick.</p>
+          <h1>Will you be<br />my <em>Valentine?</em></h1>
+          <p class="letter-copy">
+            Of all the things I could ask for,<br />my favourite would be a
+            little time with you.
+          </p>
+          <div class="button-group">
+            <button class="button primary" id="yes-button" type="button">
+              Yes, of course <span aria-hidden="true">♡</span></button
+            ><button class="button secondary" id="no-button" type="button">
+              Not this time
+            </button>
+          </div>
+          <p class="small-note">A little question, just for you.</p>
+        </div>
+        <section id="answer-area" hidden aria-labelledby="answer-title">
+          <p class="greeting" id="answer-eyebrow"></p>
+          <h2 id="answer-title" tabindex="-1"></h2>
+          <p class="letter-copy" id="answer-copy"></p>
+          <button class="button primary" id="celebrate-button" type="button">
+            A little more celebration <span aria-hidden="true">♡</span></button
+          ><button class="replay" id="replay-button" type="button">
+            Read the note again <span aria-hidden="true">↺</span>
+          </button>
+        </section>
+        <div class="letter-signoff">
+          <span class="signature">With love, always.</span
+          ><span aria-hidden="true">xoxo</span>
+        </div>
+      </div>
+    </main>
+    <footer>
+      Made for one very special person. <span aria-hidden="true">♡</span>
+    </footer>
+    <noscript
+      ><p class="noscript-note">
+        This note needs JavaScript for the answer buttons. You can still enjoy
+        the photograph and message.
+      </p></noscript
+    >
+  </body>
 </html>
